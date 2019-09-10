@@ -4,13 +4,33 @@ using UnityEngine;
 
 public class Bounce : MonoBehaviour
 {
-    [SerializeField] private float force = 1;
-    private Rigidbody rb;
+    [SerializeField] private float speed = 1, lastPos = 0, rot = -45;
 
-    void Start()
+    void Update()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.AddForce(Vector3.up * force);
+        transform.Translate( speed * Time.deltaTime, 0, 0);
+        lastPos = transform.position.x;
+    }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        if (0 > transform.position.x)
+        {
+            rot =+ 90;
+            transform.Rotate(0,0,45 + 90);
+            Debug.Log("yeet");
+        }
+        else if (0 < transform.position.x)
+        {
+            rot =- 90;
+            transform.Rotate(0,0, 45 - 90);
+            Debug.Log("HEYO");
+        }
+        else
+        {
+            Debug.Log("oof");
+        }
+
     }
 
 }
