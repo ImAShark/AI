@@ -8,12 +8,6 @@ public class Ball : MonoBehaviour
     private float speed = 1;
     public bool up = false, down = true, left = false, right = true;
 
-
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if (up)
@@ -36,26 +30,31 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.name == "Wall1" || col.gameObject.name == "Bottom")//top
+        if (col.gameObject.tag == "Top")//top
         {
-            up = false;
-            down = true;
+            down = false;
+            up = true;            
         }
-        if (col.gameObject.name == "Wall2" || col.gameObject.name == "RightSide")//left
+        if (col.gameObject.tag == "Left")//left
         {
             left = false;
             right = true;
         }
-        if (col.gameObject.name == "Wall3" || col.gameObject.name == "LeftSide")//right
+        if (col.gameObject.tag == "Right")//right
         {
             right = false;
             left = true;
         }
 
-        if (col.gameObject.tag == "Player" || col.gameObject.name == "Top")//bottom 
+        if (col.gameObject.tag == "Bottom")//bottom 
         {
-            down = false;
-            up = true;
+            up = false;
+            down = true;            
+        }
+
+        if (col.gameObject.tag == "Wall")//bottom 
+        {
+            Destroy(gameObject);
         }
 
     }

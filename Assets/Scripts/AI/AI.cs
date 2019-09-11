@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class AI : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private int fitness;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "Ball")
+        {
+            fitness++;
+        }
+        
+    }
+
+    private void CalculateFitness()
+    {
+
     }
 }
