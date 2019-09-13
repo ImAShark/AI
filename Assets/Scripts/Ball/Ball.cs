@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Ball : MonoBehaviour
 {
     [SerializeField]
     private float speed = 1;
-    public bool up = false, down = true, left = false, right = true;
+    private bool up = false, down = true, left = false, right = true;
+    public Action BallDies;
 
     void Update()
     {
@@ -30,7 +32,7 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Top")//top
+        if (col.gameObject.tag == "Top" || col.gameObject.tag == "Player")//top
         {
             down = false;
             up = true;            
@@ -54,6 +56,7 @@ public class Ball : MonoBehaviour
 
         if (col.gameObject.tag == "Wall")//bottom 
         {
+            BallDies();
             Destroy(gameObject);
         }
 
