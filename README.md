@@ -30,6 +30,6 @@ Je hebt grofweg 2 weken, hoe deel je deze twee weken in. Wat plan je wanneer om 
 ## Bronnen
 Welke bronnen heb je gebruikt? Zowel youtube filmpjes als artikelen
 
-- [The Guide To Game Design](link)
-- [Alleatoric Algorithms](link)
-- [Flood-Fill Wikipedia](link)
+https://www.youtube.com/watch?v=BOZfhUcNiqk
+https://github.com/Code-Bullet/Smart-Dots-Genetic-Algorithm-Tutorial
+
