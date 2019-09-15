@@ -13,13 +13,12 @@ Wanneer je een specifiek onderdeel wilt uitlichten kun je dat in deze sectie ben
 ## Software Analyse 
 Welke software heb je voor deze proefopdracht onderzocht? En waarom heb je uiteindelijk gekozen voor de gekozen Software. Benoem hier specifieke argumenten.
 - Unity engine/C#
-- 
+- Omdat ik deze software goed ken, kan ik makkelijker nieuwe onderwerpen leren om ze later toe te kunnen passen.
 
 ## Leerdoelen 
 Wat wil je bereiken met dit project? Formuleer dit kort, krachtig en haalbaar.
 - Leren hoe een AI werkt zodat ik dit later vaker kan toepassen.
-- 
-- 
+- Weten hoe een AI in elkaar zit omdat ik het interesant vind.
 
 ## Planning 
 Je hebt grofweg 2 weken, hoe deel je deze twee weken in. Wat plan je wanneer om precies te doen?
