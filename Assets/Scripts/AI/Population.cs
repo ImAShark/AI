@@ -39,8 +39,8 @@ public class Population : MonoBehaviour
                 if (y <= high)
                 {
                     y = high;
-                    t = alfa;
-                    Debug.Log("alfa" + alfa);
+                    alfa = t;
+                    Debug.Log("alfa " + alfa);
                 }
             }
         }
