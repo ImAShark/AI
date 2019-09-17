@@ -8,7 +8,8 @@ public class Population : MonoBehaviour
     private List<GameObject> parents = new List<GameObject>();
     private List<Vector3> aDirections = new List<Vector3>();
     private int amount,high, deaths;
-    private GameObject alfa, mutation;
+    private GameObject alfa;
+    [SerializeField] private GameObject population;
     private bool proccesed = false;
 
     void Start()
@@ -86,12 +87,12 @@ public class Population : MonoBehaviour
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             amount = players.Length;
 
-            for (int i = 0; i < amount; i++)
+            for (int i = 0; i < parents.Count; i++)
             {
-                parents.Add(players[i]);
-                var casulties = parents[i].gameObject.transform.parent.GetComponentInChildren<Ball>();
-                casulties.BallDies += StartProcces;
+                parents[i] = players[i];
             }
+            ResetThis();
+            
         }
         
     }
@@ -99,6 +100,13 @@ public class Population : MonoBehaviour
     private void BallDead()
     {
         deaths++;
+    }
+
+    private void ResetThis()
+    {
+        Instantiate(population,new Vector3(0,0,0), Quaternion.identity);
+        Destroy(this.gameObject);
+        Debug.Log(gameObject);
     }
 
 
