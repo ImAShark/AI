@@ -9,28 +9,29 @@ public class Population : MonoBehaviour
     private List<Vector3> aDirections = new List<Vector3>();
     private int amount,high, deaths;
     private GameObject alfa, mutation;
+    private bool proccesed = false;
 
     void Start()
+    {
+        Startup();
+    }
+
+    private void Startup()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         amount = players.Length;
         for (int i = 0; i < amount; i++)
         {
-           parents.Add(players[i]);
-           var casulties = parents[i].gameObject.transform.parent.GetComponentInChildren<Ball>();
-           casulties.BallDies += StartProcces;
+            parents.Add(players[i]);
+            var casulties = parents[i].gameObject.transform.parent.GetComponentInChildren<Ball>();
+            casulties.BallDies += StartProcces;
         }
-        Debug.Log(amount);
-    }
-
-    void Update()
-    {
-        
     }
 
     private void StartProcces()
     {
         BallDead();
+        proccesed = false;
         if (deaths == amount)
         {
             for (int i = 0; i < amount; i++)
@@ -69,17 +70,28 @@ public class Population : MonoBehaviour
     }
 
     private void RePopulate()
-    {
-        bool proccesed = false;
+    {        
         if (!proccesed)
         {
             for (int i = 0; i < amount; i++)
             {
-                Vector3 pos = parents[i].gameObject.transform.position;
-                Destroy(parents[i].gameObject);
+                Vector3 pos = parents[i].gameObject.transform.parent.gameObject.transform.position;
+                Destroy(parents[i].gameObject.transform.parent.gameObject);
                 Instantiate(subject, pos, Quaternion.identity);
             }
             proccesed = true;
+        }
+        else if (proccesed)
+        {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            amount = players.Length;
+
+            for (int i = 0; i < amount; i++)
+            {
+                parents.Add(players[i]);
+                var casulties = parents[i].gameObject.transform.parent.GetComponentInChildren<Ball>();
+                casulties.BallDies += StartProcces;
+            }
         }
         
     }

@@ -16,8 +16,7 @@ public class Brain : MonoBehaviour
         var myBall = gameObject.transform.parent.GetComponentInChildren<Ball>();
         myBall.BallDies += Die;
         reset = timer;
-        y = transform.position.y;
-        x = transform.position.x;
+        
     }
 
     void Start()
@@ -26,7 +25,16 @@ public class Brain : MonoBehaviour
         if (alfaPath.Count == 0)
         {
             hasAlfaPath = false;
+            firstTime = true;
         }
+        else
+        {
+            hasAlfaPath = true;
+            firstTime = false;
+        }
+
+        y = transform.position.y;
+        x = transform.position.x;
     }
 
     void Update()
@@ -37,32 +45,31 @@ public class Brain : MonoBehaviour
 
     private void Move()
     {
-        if (hasAlfaPath)
+        if (!isDead)
         {
-            if (timer <= 0 && aStep <= alfaPath.Count)
+            if (timer <= 0 && alfaPath.Count == 0 && hasAlfaPath)
             {
                 MoveToVector();
                 timer = reset;
             }
             else
             {
-                timer = timer - Time.deltaTime;
+                if (timer <= 0)
+                {
+                    MoveRandomly(100);
+                    timer = reset;
+                }
+                else
+                {
+                    timer = timer - Time.deltaTime;
+                }
             }
+            
         }
-        else if (!isDead && firstTime)
-        {
-            if (timer <= 0)
-            {
-                MoveRandomly(100);
-                timer = reset;
-            }
-            else
-            {
-                timer = timer - Time.deltaTime;
-            }
-        }
-
         
+
+
+
     }
 
     private void MoveRandomly(int times)
@@ -109,7 +116,6 @@ public class Brain : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             yeetPoints++;
-            Debug.Log("yeet " + yeetPoints);
         }
     }
 
